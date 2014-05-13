@@ -4,7 +4,7 @@
   "activationEvents": [],
   "main": "./lib/init",
   "version": "0.0.2",
-  "description": "Lint PHP on the fly, using php -l (not yet ready)",
+  "description": "Lint PHP on the fly, using php -l",
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
   "engines": {
