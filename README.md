@@ -23,4 +23,4 @@ You can configure linter-phpcs by editing ~/.atom/config.cson (choose Open Your 
 - [linter-coffeelint](https://atom.io/packages/linter-coffeelint) Linter plugin for CoffeeScript, using coffeelint.
 - [linter-csslint](https://atom.io/packages/linter-csslint) Linter plugin for CSS, using csslint.
 - [linter-rubocop](https://atom.io/packages/linter-rubocop) - Linter plugin for Ruby, using rubocop.
-- [linter-tslint](https://atom.io/packages/linter-tslint) Linter plugin for JavaScript, using tslint.
+- [linter-tslint](https://atom.io/packages/linter-tslint) Linter plugin for TypeScript, using tslint.
