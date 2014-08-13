@@ -3,7 +3,7 @@
   "linter-package": true,
   "activationEvents": [],
   "main": "./lib/init",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Lint PHP on the fly, using php -l",
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
