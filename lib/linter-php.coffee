@@ -1,6 +1,5 @@
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
-{CompositeDisposable} = require 'atom'
 
 class LinterPhp extends Linter
   # The syntax that the linter handles. May be a string or
@@ -15,21 +14,12 @@ class LinterPhp extends Linter
 
   linterName: 'php'
 
+  options: ['phpExecutablePath']
+
   # A regex pattern used to extract information from the executable's output.
   regex: '(Parse|Fatal) (?<error>error):(\\s*(?<type>parse|syntax) error,?)?\\s*' +
          '(?<message>(unexpected \'(?<near>[^\']+)\')?.*) ' +
          'in .*? on line (?<line>\\d+)'
-
-  constructor: (editor) ->
-    super(editor)
-    @disposables = new CompositeDisposable
-
-    @disposables.add atom.config.observe 'linter-php.phpExecutablePath', =>
-      @executablePath = atom.config.get 'linter-php.phpExecutablePath'
-
-  destroy: ->
-    # atom.config.unobserve 'linter-php.phpExecutablePath'
-    @disposables.dispose();
 
   createMessage: (match) ->
     # message might be empty, we have to supply a value
