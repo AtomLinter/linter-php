@@ -28,6 +28,7 @@ class LinterPhp extends Linter
       @executablePath = atom.config.get 'linter-php.phpExecutablePath'
 
   destroy: ->
+    super
     @disposables.dispose()
 
   createMessage: (match) ->
