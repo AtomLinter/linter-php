@@ -1,7 +1,7 @@
 {
   "name": "linter-php",
   "linter-package": true,
-  "activationEvents": [],
+  "activationCommands": {},
   "main": "./lib/init",
   "version": "0.0.12",
   "description": "Lint PHP on the fly, using php -l",
