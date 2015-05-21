@@ -1,5 +1,6 @@
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
+{CompositeDisposable} = require "atom"
 
 class LinterPhp extends Linter
   # The syntax that the linter handles. May be a string or
@@ -22,11 +23,13 @@ class LinterPhp extends Linter
   constructor: (editor) ->
     super(editor)
 
-    atom.config.observe 'linter-php.phpExecutablePath', =>
+    @disposables = new CompositeDisposable
+
+    @disposables.add atom.config.observe 'linter-php.phpExecutablePath', =>
       @executablePath = atom.config.get 'linter-php.phpExecutablePath'
 
   destroy: ->
-    atom.config.unobserve 'linter-php.phpExecutablePath'
+    @disposables.dispose()
 
   createMessage: (match) ->
     # message might be empty, we have to supply a value
