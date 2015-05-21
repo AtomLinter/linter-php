@@ -10,7 +10,7 @@ This package will lint your `.php` opened filed in Atom through [php -l](http://
 * `$ apm install linter-php`
 
 ## Settings
-You can configure linter-phpcs by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
+You can configure linter-php by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
 ```
 'linter-php':
   'phpExecutablePath': null # php path. run 'which php' to find the path
