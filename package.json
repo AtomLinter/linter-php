@@ -8,12 +8,6 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "coffeelintConfig": {
-    "max_line_length" : {
-      "level" : "error",
-      "value" : 1000
-    }
-  },
   "providedServices": {
     "linter": {
       "versions": {
@@ -22,18 +16,4 @@
     }
   },
   "dependencies": {},
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [],
-    "extensions": {
-      ".coffee": [
-        "lib/helpers.coffee",
-        "lib/main.coffee"
-      ],
-      ".json": [
-        "package.json"
-      ]
-    },
-    "folders": []
-  }
 }
