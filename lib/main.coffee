@@ -25,7 +25,7 @@ module.exports =
     provider =
       grammarScopes: ['text.html.php', 'source.php']
       scope: 'file'
-      lintOnFly: false
+      lintOnFly: true
       lint: (textEditor) =>
         filePath = textEditor.getPath()
         command = @executablePath
@@ -34,7 +34,7 @@ module.exports =
         parameters.push('--no-php-ini')
         parameters.push('--define', 'display_errors=On')
         parameters.push('--define', 'log_errors=Off')
-        parameters.push('--file', filePath)
-        return helpers.exec(command, parameters).then (output) =>
+        text = textEditor.getText()
+        return helpers.exec(command, parameters, {stdin: text}).then (output) =>
           messages = helpers.parse(output, @regex, {filePath: filePath})
           return messages
