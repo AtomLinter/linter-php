@@ -37,5 +37,4 @@ module.exports =
         parameters.push('--file', filePath)
         return helpers.exec(command, parameters).then (output) =>
           messages = helpers.parse(output, @regex, {filePath: filePath})
-          console.log(messages)
           return messages
