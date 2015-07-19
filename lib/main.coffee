@@ -21,9 +21,7 @@ module.exports =
     @subscriptions.dispose()
 
   provideLinter: ->
-    path = require 'path'
     helpers = require('atom-linter')
-    child_process = require 'child_process'
     provider =
       grammarScopes: ['text.html.php', 'source.php']
       scope: 'file'
