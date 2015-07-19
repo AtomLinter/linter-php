@@ -1,4 +1,4 @@
-{BufferedProcess, CompositeDisposable} = require 'atom'
+{CompositeDisposable} = require 'atom'
 
 module.exports =
   config:
@@ -8,7 +8,6 @@ module.exports =
       default: 'php' # Let OS's $PATH handle the rest
 
   activate: ->
-    @parameters = []
     @regex = '(Parse|Fatal) ' +
             '(?<error>error):(\\s*(?<type>parse|syntax) error,?)?\\s*' +
             '(?<message>(unexpected \'(?<near>[^\']+)\')?.*) ' +
@@ -31,19 +30,15 @@ module.exports =
       lintOnFly: false
       lint: (textEditor) =>
         return new Promise (resolve, reject) =>
-          data = []
           filePath = textEditor.getPath()
           command = @executablePath
-          parameters = @parameters.filter (item) -> item
+          parameters = []
           parameters.push('--syntax-check')
           parameters.push('--no-php-ini')
-          parameters.push('--define display_errors=On')
-          parameters.push('--define log_errors=Off')
-          parameters.push('--file "' + filePath + '"')
-          command += ' ' + parameters.join(' ')
-          process = child_process.exec(command)
-          process.stdout.on 'data', (d) -> data.push d.toString()
-          process.on 'close', =>
-            messages = helpers.parse(data.join(''), @regex,
-                                     {filePath: filePath})
+          parameters.push('--define', 'display_errors=On')
+          parameters.push('--define', 'log_errors=Off')
+          parameters.push('--file', filePath)
+          helpers.exec(command, parameters).then (output) =>
+            messages = helpers.parse(output, @regex, {filePath: filePath})
+            console.log(messages)
             resolve messages
