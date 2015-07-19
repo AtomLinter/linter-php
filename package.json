@@ -1,13 +1,18 @@
 {
   "name": "linter-php",
-  "linter-package": true,
-  "main": "./lib/init",
-  "version": "0.0.15",
+  "main": "./lib/main",
+  "version": "0.1.0",
   "description": "Lint PHP on the fly, using php -l",
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
+  "dependencies": {
+    "atom-linter": "^2.0.0"
   },
-  "dependencies": {}
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  }
 }
