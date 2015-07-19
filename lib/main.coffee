@@ -29,16 +29,15 @@ module.exports =
       scope: 'file'
       lintOnFly: false
       lint: (textEditor) =>
-        return new Promise (resolve, reject) =>
-          filePath = textEditor.getPath()
-          command = @executablePath
-          parameters = []
-          parameters.push('--syntax-check')
-          parameters.push('--no-php-ini')
-          parameters.push('--define', 'display_errors=On')
-          parameters.push('--define', 'log_errors=Off')
-          parameters.push('--file', filePath)
-          helpers.exec(command, parameters).then (output) =>
-            messages = helpers.parse(output, @regex, {filePath: filePath})
-            console.log(messages)
-            resolve messages
+        filePath = textEditor.getPath()
+        command = @executablePath
+        parameters = []
+        parameters.push('--syntax-check')
+        parameters.push('--no-php-ini')
+        parameters.push('--define', 'display_errors=On')
+        parameters.push('--define', 'log_errors=Off')
+        parameters.push('--file', filePath)
+        return helpers.exec(command, parameters).then (output) =>
+          messages = helpers.parse(output, @regex, {filePath: filePath})
+          console.log(messages)
+          return messages
