@@ -37,4 +37,5 @@ module.exports =
         text = textEditor.getText()
         return helpers.exec(command, parameters, {stdin: text}).then (output) =>
           messages = helpers.parse(output, @regex, {filePath: filePath})
+          messages.forEach (message) -> message.type = 'Error' unless message.type
           return messages
