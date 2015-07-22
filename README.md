@@ -17,5 +17,19 @@ You can configure linter-php by editing ~/.atom/config.cson (choose Open Your Co
   'executablePath': null
 ```
 
-## Other linters
-For a full listing of other available linters please check [here](http://atomlinter.github.io/).
+## Contributing
+If you would like to contribute enhancements or fixes, please do the following:
+
+1. Fork the plugin repository.
+1. Hack on a separate topic branch created from the latest `master`.
+1. Commit and push the topic branch.
+1. Make a pull request.
+1. Welcome to the club!
+
+Please note that modifications should follow these coding guidelines:
+
+- Indent is 2 spaces.
+- Code should pass [CoffeeLint](http://www.coffeelint.org/) with the provided `coffeelint.json`
+- Vertical whitespace helps readability, don’t be afraid to use it.
+
+**Thank you for helping out!**
