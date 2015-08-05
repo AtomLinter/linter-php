@@ -1,7 +1,7 @@
 {
   "name": "linter-php",
   "main": "./lib/main",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lint PHP on the fly, using php -l",
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
