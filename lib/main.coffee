@@ -38,6 +38,6 @@ module.exports =
             messages.push
               type: "Error"
               filePath: filePath
-              range: [[match[2] - 1 , 1], [match[2] - 1, 2]]
+              range: helpers.rangeFromLineNumber(textEditor, match[2] - 1)
               text: match[1]
           return messages
