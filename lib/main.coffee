@@ -8,10 +8,6 @@ module.exports =
       default: 'php' # Let OS's $PATH handle the rest
 
   activate: ->
-    @regex = '(Parse|Fatal) ' +
-            '(?<error>error):(\\s*(?<type>parse|syntax) error,?)?\\s*' +
-            '(?<message>(unexpected \'(?<near>[^\']+)\')?.*) ' +
-            'in .*? on line (?<line>\\d+)'
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.config.observe 'linter-php.executablePath',
       (executablePath) =>
@@ -35,7 +31,13 @@ module.exports =
         parameters.push('--define', 'display_errors=On')
         parameters.push('--define', 'log_errors=Off')
         text = textEditor.getText()
-        return helpers.exec(command, parameters, {stdin: text}).then (output) =>
-          messages = helpers.parse(output, @regex, {filePath: filePath})
-          messages.forEach (message) -> message.type = 'Error' unless message.type
+        return helpers.exec(command, parameters, {stdin: text}).then (output) ->
+          regex = /error:\s+(.*?) on line (\d+)/g
+          messages = []
+          while((match = regex.exec(output)) isnt null)
+            messages.push
+              type: "Error"
+              filePath: filePath
+              range: helpers.rangeFromLineNumber(textEditor, match[2] - 1)
+              text: match[1]
           return messages
