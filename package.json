@@ -6,7 +6,7 @@
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
   "dependencies": {
-    "atom-linter": "^2.0.0"
+    "atom-linter": "^3.0.0"
   },
   "providedServices": {
     "linter": {
