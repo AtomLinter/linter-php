@@ -33,3 +33,10 @@ Please note that modifications should follow these coding guidelines:
 - Vertical whitespace helps readability, don’t be afraid to use it.
 
 **Thank you for helping out!**
+
+## Maintainers
+
+The following people have stepped up to take responsibility for this repository and should be consulted on any releases or major changes.
+
+* [steelbrain](http://github.com/steelbrain) - Release Maintainer
+* [Arcanemagus](http://github.com/Arcanemagus)
