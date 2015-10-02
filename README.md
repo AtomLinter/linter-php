@@ -1,5 +1,4 @@
 # linter-php
-=========================
 
 This package will lint PHP files and embedded PHP within HTML files in Atom through
 [php -l](http://www.php.net/manual/en/features.commandline.options.php).
