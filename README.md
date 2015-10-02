@@ -1,18 +1,22 @@
 # linter-php
+[![Dependency Status](https://david-dm.org/AtomLinter/linter-php.svg)](https://david-dm.org/AtomLinter/linter-php)
+[![apm](https://img.shields.io/apm/v/linter-php.svg)](https://atom.io/packages/linter-php)
+[![apm](https://img.shields.io/apm/dm/linter-php.svg)](https://atom.io/packages/linter-php)
 
 This package will lint PHP files and embedded PHP within HTML files in Atom through
 [php -l](http://www.php.net/manual/en/features.commandline.options.php).
 
 ## Installation
 As this package only provides a service, you will need something to run it. As
-such, the Linter package will be installed for you if it isn't already installed.
+such, the [Linter](https://atom.io/packages/linter) package will be installed for you if it isn't already installed.
 This provides the interface and runs the linter for you.
 
 * Install [php](http://php.net).
 * `$ apm install linter-php`
 
 ## Settings
-You can configure linter-php by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
+You can configure linter-php from Atom's settings menu or by editing
+`~/.atom/config.cson` (choose Open Your Config in Atom menu):
 ```cson
 'linter-php':
   # php path. run 'which php' to find the path
