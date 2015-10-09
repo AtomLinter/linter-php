@@ -1,4 +1,5 @@
 # linter-php
+[![Build Status](https://travis-ci.org/AtomLinter/linter-php.svg)](https://travis-ci.org/AtomLinter/linter-php)
 [![Dependency Status](https://david-dm.org/AtomLinter/linter-php.svg)](https://david-dm.org/AtomLinter/linter-php)
 [![apm](https://img.shields.io/apm/v/linter-php.svg)](https://atom.io/packages/linter-php)
 [![apm](https://img.shields.io/apm/dm/linter-php.svg)](https://atom.io/packages/linter-php)
