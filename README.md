@@ -8,38 +8,30 @@ This package will lint PHP files and embedded PHP within HTML files in Atom thro
 [php -l](http://www.php.net/manual/en/features.commandline.options.php).
 
 ## Installation
-As this package only provides a service, you will need something to run it. As
-such, the [Linter](https://atom.io/packages/linter) package will be installed for you if it isn't already installed.
-This provides the interface and runs the linter for you.
+You will need to have [php](http://php.net) installed on your system before trying
+to use this package, please follow the instructions on their site to accomplish this.
 
-* Install [php](http://php.net).
-* `$ apm install linter-php`
+After installing `php` on your system you can install this package by either searching
+for it within Atom's package installation section of the settings or by running the
+following command in a terminal:
+```ShellSession
+apm install linter-php
+```
 
-## Settings
-You can configure linter-php from Atom's settings menu or by editing
-`~/.atom/config.cson` (choose Open Your Config in Atom menu):
+_As this package only provides a service, you will need something to run it. As
+such, the [Linter](https://atom.io/packages/linter) package will be installed
+automatically for you if it isn't already installed. This will provide the user interface and run the linter for you._
+
+### Setup
+Once the package is installed you may need to specify the path to the `php`
+executable if Atom is not able to find it automatically. You can do this from
+Atom's settings menu or by editing your `~/.atom/config.cson` file (choose Open Your Config in Atom's menu). If editing the file by hand you should modify/create a
+section like the following:
 ```cson
 'linter-php':
   # php path. run 'which php' to find the path
-  'executablePath': null
+  'executablePath': /usr/bin/php
 ```
-
-## Contributing
-If you would like to contribute enhancements or fixes, please do the following:
-
-1. Fork the plugin repository.
-1. Hack on a separate topic branch created from the latest `master`.
-1. Commit and push the topic branch.
-1. Make a pull request.
-1. Welcome to the club!
-
-Please note that modifications should follow these coding guidelines:
-
-- Indent is 2 spaces.
-- Code should pass [CoffeeLint](http://www.coffeelint.org/) with the provided `coffeelint.json`
-- Vertical whitespace helps readability, don’t be afraid to use it.
-
-**Thank you for helping out!**
 
 ## Maintainers
 
