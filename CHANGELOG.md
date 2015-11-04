@@ -1,3 +1,6 @@
+# v1.1.0
+* Verify the configured `php` works properly on activate
+
 # v1.0.4 - v1.0.5
 * Automatically install the `linter` package
 * Specify a name to display in messages
