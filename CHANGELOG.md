@@ -1,3 +1,6 @@
+# v1.1.1
+* Only activate the package when a PHP file has been opened
+
 # v1.1.0
 * Verify the configured `php` works properly on activate
 
