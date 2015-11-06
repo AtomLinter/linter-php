@@ -4,22 +4,13 @@ describe('The php -l provider for Linter', () => {
   const lint = require('../lib/main').provideLinter().lint;
 
   beforeEach(() => {
-    atom.workspace.destroyActivePaneItem()
+    atom.workspace.destroyActivePaneItem();
     waitsForPromise(() => {
-      atom.packages.activatePackage('linter-php')
+      atom.packages.activatePackage('linter-php');
+      return atom.packages.activatePackage('language-php').then(() =>
+        atom.workspace.open(__dirname + '/files/bad.php')
+      );
     });
-    // return atom.packages.activatePackage("language-php").then(() =>
-    //     atom.packages.activatePackage("language-php")
-    //   );
-      // Promise.all([
-      //   atom.packages.activatePackage("language-php"),
-      //   atom.packages.activatePackage("language-php")
-      // ]);
-    // });
-    // waitsForPromise(() => {
-    //   return atom.packages.triggerActivationHook('language-php:grammar-used');
-    // // });
-    // atom.packages.triggerActivationHook('language-php:grammar-used');
   });
 
   it('should be in the packages list', () => {
@@ -38,7 +29,6 @@ describe('The php -l provider for Linter', () => {
           editor = openEditor;
         });
       });
-      atom.packages.triggerActivationHook('language-php:grammar-used');
     });
 
     it('finds at least one message', () => {
