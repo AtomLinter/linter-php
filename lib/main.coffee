@@ -42,7 +42,7 @@ module.exports =
       lint: (textEditor) =>
         filePath = textEditor.getPath()
         command = @executablePath
-        return [] unless command?
+        return Promise.resolve([]) unless command?
         parameters = []
         parameters.push('--syntax-check')
         parameters.push('--no-php-ini')
@@ -58,4 +58,4 @@ module.exports =
               filePath: filePath
               range: helpers.rangeFromLineNumber(textEditor, match[2] - 1)
               text: match[1]
-          return messages
+          messages
