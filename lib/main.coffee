@@ -23,7 +23,7 @@ module.exports =
         atom.notifications.addError(title, {detail: message})
 
   activate: ->
-    require('atom-package-deps').install('linter-php')
+    require('atom-package-deps').install()
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.config.observe 'linter-php.executablePath',
       (executablePath) =>
