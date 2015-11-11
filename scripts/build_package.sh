@@ -37,6 +37,9 @@ elif [ "$LPHP_OS" = "osx" ]; then
   ATOM_PATH=./atom $ATOM_DIR/atom.sh -v
 fi
 
+echo "Using PHP version:"
+php --version
+
 echo "Downloading package dependencies..."
 $APM clean
 $APM install
