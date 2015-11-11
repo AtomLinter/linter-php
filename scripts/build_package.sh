@@ -5,7 +5,7 @@ if [ "$LPHP_OS" = "linux" ]; then
   URL="https://atom.io/download/deb"
   FILE="atom-amd64.deb"
   ATOM_DIR=/usr/bin
-else
+elif [ "$LPHP_OS" = "osx" ]; then
   URL="https://atom.io/download/mac"
   FILE="atom.zip"
   ATOM_DIR=atom/Atom.app/Contents/Resources/app
@@ -18,13 +18,15 @@ curl -s -L "$URL" \
 if [ "$LPHP_OS" = "linux" ]; then
   sudo apt-get update
   sudo apt-get install gvfs-bin
-  # Install xvfb and libgtk2.0-0
   sudo apt-get install xvfb
   sudo apt-get install libgtk2.0-0
   sudo dpkg --install atom-amd64.deb || true
-  sudo apt-get -f install
+  sudo apt-get -f install -y
   APM=apm
-else
+elif [ "$LPHP_OS" = "osx" ]; then
+  echo "Updating PHP to 5.6"
+  curl -s http://php-osx.liip.ch/install.sh | bash -s 5.6
+  export PATH=/usr/local/php5/bin:$PATH
   mkdir atom
   unzip -q "$FILE" -d atom
   export PATH=$PWD/$ATOM_DIR/apm/bin:$PATH
@@ -34,9 +36,12 @@ fi
 echo "Using Atom version:"
 if [ "$LPHP_OS" = "linux" ]; then
   atom -v
-else
+elif [ "$LPHP_OS" = "osx" ]; then
   ATOM_PATH=./atom $ATOM_DIR/atom.sh -v
 fi
+
+echo "Using PHP version:"
+php --version
 
 echo "Downloading package dependencies..."
 $APM clean
@@ -91,6 +96,10 @@ if [ -f ./node_modules/.bin/standard ]; then
 fi
 
 echo "Running specs..."
-ATOM_PATH=./atom $APM test --path $ATOM_DIR/atom.sh
+if [ "$LPHP_OS" = "linux" ]; then
+  $APM test
+elif [ "$LPHP_OS" = "osx" ]; then
+  ATOM_PATH=./atom $APM test --path $ATOM_DIR/atom.sh
+fi
 
 exit

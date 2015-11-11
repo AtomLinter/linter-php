@@ -8,13 +8,15 @@ notifications:
   email:
     on_success: never
     on_failure: change
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-os: linux
-env: LPHP_OS=linux
-script: scripts/build_package.sh
+matrix:
+  include:
+    - os: linux
+      env: LPHP_OS=linux
+      before_script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+      language: php
+    - os: osx
+      env: LPHP_OS=osx
 
-language: php
-php:
-  - 5.6
+script: scripts/build_package.sh
