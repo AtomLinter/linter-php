@@ -13,7 +13,9 @@
     "atom-package-deps": "^3.0.2"
   },
   "devDependencies": {
-    "coffeelint": "^1.13.1"
+    "coffeelint": "^1.13.1",
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "latest"
   },
   "package-deps": [
     "linter"
@@ -26,6 +28,16 @@
       "versions": {
         "1.0.0": "provideLinter"
       }
+    }
+  },
+  "eslintConfig": {
+    "extends": "airbnb/base",
+    "globals": {
+      "atom": true,
+      "waitsForPromise": true
+    },
+    "env": {
+      "jasmine": true
     }
   },
   "coffeelintConfig": {
