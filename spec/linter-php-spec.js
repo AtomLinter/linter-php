@@ -1,4 +1,5 @@
 'use babel';
+/* eslint-env jasmine */
 
 describe('The php -l provider for Linter', () => {
   const lint = require('../lib/main').provideLinter().lint;
