@@ -9,6 +9,11 @@ notifications:
     on_success: never
     on_failure: change
 os: osx
-env: LPHP_OS=osx
+before_install:
+  - echo "Updating PHP to 5.6"
+  - curl -s http://php-osx.liip.ch/install.sh | bash -s 5.6
+  - export PATH=/usr/local/php5/bin:$PATH
+  - echo "Using PHP version:"
+  - php --version
 
 script: scripts/build_package.sh

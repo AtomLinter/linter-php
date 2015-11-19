@@ -1,5 +1,5 @@
 #!/bin/sh
-
+LPHP_OS=osx
 echo "Downloading latest Atom release..."
 if [ "$LPHP_OS" = "linux" ]; then
   URL="https://atom.io/download/deb"
@@ -24,9 +24,6 @@ if [ "$LPHP_OS" = "linux" ]; then
   sudo apt-get -f install -y
   APM=apm
 elif [ "$LPHP_OS" = "osx" ]; then
-  echo "Updating PHP to 5.6"
-  curl -s http://php-osx.liip.ch/install.sh | bash -s 5.6
-  export PATH=/usr/local/php5/bin:$PATH
   mkdir atom
   unzip -q "$FILE" -d atom
   export PATH=$PWD/$ATOM_DIR/apm/bin:$PATH
@@ -39,9 +36,6 @@ if [ "$LPHP_OS" = "linux" ]; then
 elif [ "$LPHP_OS" = "osx" ]; then
   ATOM_PATH=./atom $ATOM_DIR/atom.sh -v
 fi
-
-echo "Using PHP version:"
-php --version
 
 echo "Downloading package dependencies..."
 $APM clean
