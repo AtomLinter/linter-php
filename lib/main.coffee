@@ -45,7 +45,6 @@ module.exports =
         return Promise.resolve([]) unless command?
         parameters = []
         parameters.push('--syntax-check')
-        parameters.push('--no-php-ini')
         parameters.push('--define', 'display_errors=On')
         parameters.push('--define', 'log_errors=Off')
         text = textEditor.getText()
