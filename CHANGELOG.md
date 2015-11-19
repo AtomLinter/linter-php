@@ -1,3 +1,6 @@
+# v1.l.3
+* Stop ignoring `php.ini`
+
 # v1.1.2
 * Update package dependencies to clear an Atom deprecation issue
 
