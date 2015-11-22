@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "atom-linter": "^3.3.6",
-    "atom-package-deps": "^3.0.2"
+    "atom-package-deps": "^3.0.5"
   },
   "devDependencies": {
     "coffeelint": "^1.14.0",
