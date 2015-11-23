@@ -1,3 +1,9 @@
+# v1.1.5
+* Bump to include a fix in `atom-linter`.
+
+# v1.1.4
+* Bump to include latest `package-deps`.
+
 # v1.l.3
 * Stop ignoring `php.ini`
 
