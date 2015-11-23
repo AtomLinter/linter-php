@@ -1,3 +1,6 @@
+# v1.1.6
+* Bump to include a fix in `atom-linter`.
+
 # v1.1.5
 * Bump to include a fix in `atom-linter`.
 
