@@ -7,7 +7,7 @@
 # v1.1.4
 * Bump to include latest `package-deps`.
 
-# v1.l.3
+# v1.1.3
 * Stop ignoring `php.ini`
 
 # v1.1.2
