@@ -9,7 +9,7 @@
     "language-php:grammar-used"
   ],
   "dependencies": {
-    "atom-linter": "^3.3.9",
+    "atom-linter": "^4.0.1",
     "atom-package-deps": "^3.0.5"
   },
   "devDependencies": {
