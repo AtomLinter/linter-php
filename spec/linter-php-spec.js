@@ -46,7 +46,7 @@ describe('The php -l provider for Linter', () => {
           expect(messages[0].type).toBeDefined();
           expect(messages[0].type).toEqual('Error');
           expect(messages[0].text).toBeDefined();
-          expect(messages[0].text).toEqual('syntax error, unexpected \'{\' in -');
+          expect(messages[0].text).toEqual('syntax error, unexpected \'{\'');
           expect(messages[0].filePath).toBeDefined();
           expect(messages[0].filePath).toMatch(/.+bad\.php$/);
           expect(messages[0].range).toBeDefined();
