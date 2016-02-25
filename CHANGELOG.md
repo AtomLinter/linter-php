@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+*   Handle fatal errors ([#141](https://github.com/AtomLinter/linter-php/pull/141))
+
 ## v1.1.8
 
 *   Update dependencies
