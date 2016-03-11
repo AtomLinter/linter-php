@@ -30,8 +30,7 @@
   "eslintConfig": {
     "extends": "airbnb/base",
     "globals": {
-      "atom": true,
-      "waitsForPromise": true
+      "atom": true
     },
     "env": {
       "es6": true,
