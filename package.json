@@ -12,7 +12,6 @@
   "devDependencies": {
     "coffeelint": "^1.14.2",
     "eslint": "^2.4.0",
-    "babel-eslint": "^5.0.0",
     "eslint-config-airbnb": "^6.0.2"
   },
   "package-deps": [
@@ -30,7 +29,6 @@
   },
   "eslintConfig": {
     "extends": "airbnb/base",
-    "parser": "babel-eslint",
     "globals": {
       "atom": true,
       "waitsForPromise": true
