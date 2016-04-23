@@ -8,9 +8,9 @@ const goodPath = path.join(__dirname, 'files', 'good.php');
 const emptyPath = path.join(__dirname, 'files', 'empty.php');
 const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 
-describe('The php -l provider for Linter', () => {
-  const lint = require('../lib/main').provideLinter().lint;
+const lint = require('../lib/main.coffee').provideLinter().lint;
 
+describe('The php -l provider for Linter', () => {
   beforeEach(() => {
     atom.workspace.destroyActivePaneItem();
     waitsForPromise(() => {
