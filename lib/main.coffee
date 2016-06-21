@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 helpers = require('atom-linter')
+path = require('path')
 
 module.exports =
   config:
@@ -48,7 +49,9 @@ module.exports =
         parameters.push('--define', 'display_errors=On')
         parameters.push('--define', 'log_errors=Off')
         text = textEditor.getText()
-        return helpers.exec(command, parameters, {stdin: text}).then (output) ->
+        [projectPath] = atom.project.relativizePath(filePath)
+        cwd = if projectPath? then projectPath else path.dirname(filePath)
+        return helpers.exec(command, parameters, {stdin: text, cwd: cwd}).then (output) ->
           regex = /^(?:Parse|Fatal) error:\s+(.+) in .+? on line (\d+)/gm
           messages = []
           while((match = regex.exec(output)) isnt null)
