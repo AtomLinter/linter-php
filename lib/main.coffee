@@ -51,7 +51,7 @@ module.exports =
         text = textEditor.getText()
         [projectPath] = atom.project.relativizePath(filePath)
         cwd = if projectPath? then projectPath else path.dirname(filePath)
-        return helpers.exec(command, parameters, {stdin: text, cwd: cwd}).then (output) ->
+        return helpers.exec(command, parameters, {stdin: text, cwd, ignoreExitCode: true}).then (output) ->
           regex = /^(?:Parse|Fatal) error:\s+(.+) in .+? on line (\d+)/gm
           messages = []
           while((match = regex.exec(output)) isnt null)
