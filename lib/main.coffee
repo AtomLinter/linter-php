@@ -8,6 +8,12 @@ module.exports =
       type: 'string'
       title: 'PHP Executable Path'
       default: 'php' # Let OS's $PATH handle the rest
+    errorReporting:
+      type: 'boolean'
+      title: 'Error Reporting Level Override'
+      description: 'Force overriding the `error_reporting` setting from php.ini ' +
+        'to `E_ALL` if php.ini is setup to ignore most errors.'
+      default: true
 
   _testBin: ->
     title = 'linter-php: Unable to determine PHP version'
@@ -30,6 +36,9 @@ module.exports =
       (executablePath) =>
         @executablePath = executablePath
         @_testBin()
+    @subscriptions.add atom.config.observe 'linter-php.errorReporting',
+      (value) =>
+        @errorReporting = value
 
   deactivate: ->
     @subscriptions.dispose()
@@ -48,6 +57,7 @@ module.exports =
         parameters.push('--syntax-check')
         parameters.push('--define', 'display_errors=On')
         parameters.push('--define', 'log_errors=Off')
+        parameters.push('--define', 'error_reporting=E_ALL') if @errorReporting
         text = textEditor.getText()
         [projectPath] = atom.project.relativizePath(filePath)
         cwd = if projectPath? then projectPath else path.dirname(filePath)
