@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "atom-linter": "^5.0.2",
-    "atom-package-deps": "^4.0.1"
+    "atom-package-deps": "^4.1.0"
   },
   "devDependencies": {
     "coffeelint": "^1.15.2",
