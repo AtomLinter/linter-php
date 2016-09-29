@@ -13,7 +13,7 @@
     "coffeelint": "^1.15.2",
     "eslint": "^3.5.0",
     "eslint-config-airbnb-base": "^7.1.0",
-    "eslint-plugin-import": "^1.14.0"
+    "eslint-plugin-import": "^2.0.0"
   },
   "package-deps": [
     "linter"
