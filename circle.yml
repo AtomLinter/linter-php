@@ -1,11 +1,11 @@
-test:
-  override:
-    - curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh
-
 dependencies:
   override:
-    # If nothing is put here, CircleCI will run `npm install` using the system Node.js
-    - echo "Managed in the script"
+  - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+  - chmod u+x build-package.sh
+
+test:
+  override:
+    - ./build-package.sh
 
 machine:
   php:
