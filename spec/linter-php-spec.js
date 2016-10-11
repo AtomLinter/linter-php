@@ -7,7 +7,7 @@ const goodPath = path.join(__dirname, 'files', 'good.php');
 const emptyPath = path.join(__dirname, 'files', 'empty.php');
 const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 
-const lint = require('../lib/main.coffee').provideLinter().lint;
+const lint = require('../lib/main.js').provideLinter().lint;
 
 describe('The php -l provider for Linter', () => {
   beforeEach(() => {
