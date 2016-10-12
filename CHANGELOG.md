@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.1
+
+*   Fix executablePath reference in testBin ([#215](https://github.com/AtomLinter/linter-php/pull/215))
+
 ## v1.3.0
 
 *   Run from the directory of the file ([#172](https://github.com/AtomLinter/linter-php/pull/172))
