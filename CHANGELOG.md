@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.0
+
+*   Run from the directory of the file ([#172](https://github.com/AtomLinter/linter-php/pull/172))
+*   Allow overriding `error_reporting` from `php.ini` ([#181](https://github.com/AtomLinter/linter-php/pull/181))
+*   Add exception handling ([#197](https://github.com/AtomLinter/linter-php/pull/197))
+*   Rewrite in ES2017 ([#214](https://github.com/AtomLinter/linter-php/pull/214))
+*   Many dependency updates
+
 ## 1.2.0
 
 *   Handle fatal errors ([#141](https://github.com/AtomLinter/linter-php/pull/141))
