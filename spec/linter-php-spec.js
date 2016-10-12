@@ -7,17 +7,19 @@ const goodPath = path.join(__dirname, 'files', 'good.php');
 const emptyPath = path.join(__dirname, 'files', 'empty.php');
 const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 
-const lint = require('../lib/main.coffee').provideLinter().lint;
+const lint = require('../lib/main.js').provideLinter().lint;
 
 describe('The php -l provider for Linter', () => {
   beforeEach(() => {
     atom.workspace.destroyActivePaneItem();
-    waitsForPromise(() => {
-      atom.packages.activatePackage('linter-php');
-      return atom.packages.activatePackage('language-php').then(() =>
+    waitsForPromise(() =>
+      Promise.all([
+        atom.packages.activatePackage('linter-php'),
+        atom.packages.activatePackage('language-php'),
+      ]).then(() =>
         atom.workspace.open(badPath)
-      );
-    });
+      )
+    );
   });
 
   it('should be in the packages list', () =>

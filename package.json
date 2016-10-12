@@ -1,26 +1,41 @@
 {
   "name": "linter-php",
-  "main": "./lib/main",
+  "main": "./lib/main.js",
   "version": "1.2.0",
   "description": "Lint PHP on the fly, using php -l",
   "repository": "https://github.com/AtomLinter/linter-php",
   "license": "MIT",
+  "configSchema": {
+    "executablePath": {
+      "type": "string",
+      "title": "PHP Executable Path",
+      "default": "php"
+    },
+    "errorReporting": {
+      "type": "boolean",
+      "title": "Error Reporting Level Override",
+      "description": "Force overriding the `error_reporting` setting from php.ini to `E_ALL` if php.ini is setup to ignore most errors.",
+      "default": true
+    }
+  },
   "dependencies": {
     "atom-linter": "^8.0.0",
     "atom-package-deps": "^4.0.1"
   },
   "devDependencies": {
-    "coffeelint": "^1.15.2",
     "eslint": "^3.6.0",
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-plugin-import": "^1.16.0"
+  },
+  "engines": {
+    "atom": ">=1.4.0 <2.0.0"
   },
   "package-deps": [
     "linter"
   ],
   "scripts": {
     "test": "apm test",
-    "lint": "coffeelint lib && eslint spec"
+    "lint": "eslint ."
   },
   "providedServices": {
     "linter": {
@@ -31,49 +46,22 @@
   },
   "eslintConfig": {
     "extends": "airbnb-base",
-    "globals": {
-      "atom": true
+    "rules": {
+      "global-require": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
     },
     "env": {
       "node": true
-    }
-  },
-  "coffeelintConfig": {
-    "max_line_length": {
-      "value": 120,
-      "level": "warn"
     },
-    "no_empty_param_list": {
-      "level": "error"
-    },
-    "arrow_spacing": {
-      "level": "error"
-    },
-    "no_interpolation_in_single_quotes": {
-      "level": "error"
-    },
-    "no_debugger": {
-      "level": "error"
-    },
-    "prefer_english_operator": {
-      "level": "error"
-    },
-    "colon_assignment_spacing": {
-      "spacing": {
-        "left": 0,
-        "right": 1
-      },
-      "level": "error"
-    },
-    "braces_spacing": {
-      "spaces": 0,
-      "level": "error"
-    },
-    "spacing_after_comma": {
-      "level": "error"
-    },
-    "no_stand_alone_at": {
-      "level": "error"
+    "globals": {
+      "atom": true
     }
   }
 }
