@@ -32,6 +32,7 @@ section like the following:
   # php path. run 'which php' to find the path
   'executablePath': /usr/bin/php
 ```
+> Additional settings can be found under the supporting package **Linter** automatically installed with linter-php. Global settings like linting delay can be adjusted here.
 
 ## Maintainers
 
