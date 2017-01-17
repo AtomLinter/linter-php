@@ -32,6 +32,7 @@ section like the following:
   # php path. run 'which php' to find the path
   'executablePath': /usr/bin/php
 ```
+_Additional settings can be found in the consumer of your linter providers, typically this is the [Linter](https://atom.io/packages/linter) package automatically installed with `linter-php`. Global settings like linting delay must be adjusted here._
 
 ## Maintainers
 
