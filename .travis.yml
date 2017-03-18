@@ -9,7 +9,7 @@ matrix:
       php: '7.0'
 
     - os: linux
-      php: '7.0'
+      php: '7.1'
       env:
         - ATOM_CHANNEL=beta
 
