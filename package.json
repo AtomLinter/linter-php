@@ -16,6 +16,12 @@
       "title": "Error Reporting Level Override",
       "description": "Force overriding the `error_reporting` setting from php.ini to `E_ALL` if php.ini is setup to ignore most errors.",
       "default": true
+    },
+    "ignorePhpIni": {
+      "type": "boolean",
+      "title": "Ignore php.ini",
+      "description": "Tell PHP to ignore the php.ini when checking code. This can potentially speed up linting quite a bit, but can also cause PHP to fail to compile your code, breaking linting.",
+      "default": false
     }
   },
   "dependencies": {
