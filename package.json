@@ -28,7 +28,7 @@
     "eslint-plugin-import": "^2.7.0"
   },
   "engines": {
-    "atom": ">=1.4.0 <2.0.0"
+    "atom": ">=1.7.0 <2.0.0"
   },
   "package-deps": [
     "linter"
@@ -58,7 +58,8 @@
       ]
     },
     "env": {
-      "node": true
+      "node": true,
+      "browser": true
     },
     "globals": {
       "atom": true
