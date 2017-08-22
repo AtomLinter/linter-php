@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.4.0
+
+*   Update dependencies ([#245][], [#255][])
+*   Defer loading of dependencies ([#263][])
+*   Asyncify specs and utilize activationHooks ([#264][])
+*   Add setting to ignore php.ini ([#265][])
+
+[#245]: https://github.com/AtomLinter/linter-php/pull/245
+[#255]: https://github.com/AtomLinter/linter-php/pull/255
+[#263]: https://github.com/AtomLinter/linter-php/pull/263
+[#264]: https://github.com/AtomLinter/linter-php/pull/264
+[#265]: https://github.com/AtomLinter/linter-php/pull/265
+
 ## v1.3.2
 
 *   Handle unsaved files ([#242][])
