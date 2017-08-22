@@ -1,6 +1,8 @@
 'use babel';
 
 import * as path from 'path';
+// eslint-disable-next-line no-unused-vars
+import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
 
 const badPath = path.join(__dirname, 'files', 'bad.php');
 const goodPath = path.join(__dirname, 'files', 'good.php');
@@ -10,16 +12,16 @@ const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 const lint = require('../lib/main.js').provideLinter().lint;
 
 describe('The php -l provider for Linter', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     atom.workspace.destroyActivePaneItem();
-    waitsForPromise(() =>
-      Promise.all([
-        atom.packages.activatePackage('linter-php'),
-        atom.packages.activatePackage('language-php'),
-      ]).then(() =>
-        atom.workspace.open(badPath),
-      ),
-    );
+
+    const activationPromise = atom.packages.activatePackage('linter-php');
+
+    await atom.packages.activatePackage('language-php');
+    await atom.workspace.open(goodPath);
+
+    atom.packages.triggerDeferredActivationHooks();
+    await activationPromise;
   });
 
   it('should be in the packages list', () =>
@@ -31,60 +33,40 @@ describe('The php -l provider for Linter', () => {
   );
 
   describe('checks bad.php and', () => {
-    let editor = null;
-    beforeEach(() => {
-      waitsForPromise(() =>
-        atom.workspace.open(badPath).then((openEditor) => {
-          editor = openEditor;
-        }),
-      );
-    });
+    it('verifies that message', async () => {
+      const editor = await atom.workspace.open(badPath);
+      const messages = await lint(editor);
 
-    it('finds at least one message', () => {
-      waitsForPromise(() =>
-        lint(editor).then(messages => expect(messages.length).toBe(1)),
-      );
-    });
-
-    it('verifies that message', () => {
-      waitsForPromise(() =>
-        lint(editor).then((messages) => {
-          expect(messages[0].type).toBe('Error');
-          expect(messages[0].html).not.toBeDefined();
-          expect(messages[0].text).toBe('syntax error, unexpected \'{\'');
-          expect(messages[0].filePath).toBe(badPath);
-          expect(messages[0].range).toEqual([[1, 0], [1, 6]]);
-        }),
-      );
+      expect(messages.length).toBe(1);
+      expect(messages[0].type).toBe('Error');
+      expect(messages[0].html).not.toBeDefined();
+      expect(messages[0].text).toBe('syntax error, unexpected \'{\'');
+      expect(messages[0].filePath).toBe(badPath);
+      expect(messages[0].range).toEqual([[1, 0], [1, 6]]);
     });
   });
 
-  it('finds nothing wrong with an empty file', () => {
-    waitsForPromise(() =>
-      atom.workspace.open(emptyPath).then(editor =>
-        lint(editor).then(messages => expect(messages.length).toBe(0)),
-      ),
-    );
+  it('finds nothing wrong with an empty file', async () => {
+    const editor = await atom.workspace.open(emptyPath);
+    const messages = await lint(editor);
+
+    expect(messages.length).toBe(0);
   });
 
-  it('finds nothing wrong with a valid file', () => {
-    waitsForPromise(() =>
-      atom.workspace.open(goodPath).then(editor =>
-        lint(editor).then(messages => expect(messages.length).toBe(0)),
-      ),
-    );
+  it('finds nothing wrong with a valid file', async () => {
+    const editor = await atom.workspace.open(goodPath);
+    const messages = await lint(editor);
+
+    expect(messages.length).toBe(0);
   });
 
-  it('handles fatal errors', () => {
-    waitsForPromise(() =>
-      atom.workspace.open(fatalPath).then(editor =>
-        lint(editor).then((messages) => {
-          expect(messages[0].type).toBe('Error');
-          expect(messages[0].text).toBe('Cannot redeclare Test\\A::foo()');
-          expect(messages[0].filePath).toBe(fatalPath);
-          expect(messages[0].range).toEqual([[10, 4], [10, 25]]);
-        }),
-      ),
-    );
+  it('handles fatal errors', async () => {
+    const editor = await atom.workspace.open(fatalPath);
+    const messages = await lint(editor);
+
+    expect(messages[0].type).toBe('Error');
+    expect(messages[0].text).toBe('Cannot redeclare Test\\A::foo()');
+    expect(messages[0].filePath).toBe(fatalPath);
+    expect(messages[0].range).toEqual([[10, 4], [10, 25]]);
   });
 });
