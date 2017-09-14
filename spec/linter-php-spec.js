@@ -79,6 +79,6 @@ describe('The php -l provider for Linter', () => {
     // PHP 7.x
     expect(messages[0].text).toBe('Methods with the same name as their class will not be constructors in a future version of PHP; Foo has a deprecated constructor');
     expect(messages[0].filePath).toBe(deprecatedPath);
-    expect(messages[0].range).toEqual([[4, 1]]);
+    expect(messages[0].range).toEqual([[3, 0], [3, 9]]);
   });
 });
