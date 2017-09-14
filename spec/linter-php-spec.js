@@ -10,7 +10,8 @@ const emptyPath = path.join(__dirname, 'files', 'empty.php');
 const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 const deprecatedPath = path.join(__dirname, 'files', 'deprecated.php');
 
-const lint = require('../lib/main.js').provideLinter().lint;
+const phpLint = require('../lib/main.js');
+const lint = phpLint.provideLinter().lint;
 
 describe('The php -l provider for Linter', () => {
   beforeEach(async () => {
@@ -74,11 +75,19 @@ describe('The php -l provider for Linter', () => {
   it('handles deprecated errors', async () => {
     const editor = await atom.workspace.open(deprecatedPath);
     const messages = await lint(editor);
+    const phpVersionInfo = await phpLint.getPhpVersionInfo();
 
     expect(messages[0].type).toBe('Warning');
-    // PHP 7.x
-    expect(messages[0].text).toBe('Methods with the same name as their class will not be constructors in a future version of PHP; Foo has a deprecated constructor');
     expect(messages[0].filePath).toBe(deprecatedPath);
-    expect(messages[0].range).toEqual([[3, 0], [3, 9]]);
+
+    expect(phpVersionInfo.major).not.toBeLessThan(5);
+
+    if (phpVersionInfo.major >= 7) {
+        expect(messages[0].text).toBe('Methods with the same name as their class will not be constructors in a future version of PHP; Foo has a deprecated constructor');
+        expect(messages[0].range).toEqual([[3, 0], [3, 9]]);
+    }
+    else if (phpVersionInfo.major === 5) {
+        // No E_DEPRECATED errors are reported by the linter for 5.x
+    }
   });
 });
