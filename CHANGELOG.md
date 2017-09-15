@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.5.0
+
+*   Update dependencies ([#266][])
+*   Detect php deprecated language syntax ([#268][])
+
+[#266]: https://github.com/AtomLinter/linter-php/pull/266
+[#268]: https://github.com/AtomLinter/linter-php/pull/268
+
 ## v1.4.0
 
 *   Update dependencies ([#245][], [#255][])
