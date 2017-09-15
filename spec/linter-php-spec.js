@@ -4,15 +4,15 @@ import * as path from 'path';
 // eslint-disable-next-line no-unused-vars
 import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
 
+const linterPhp = require('../lib/main.js');
+
 const badPath = path.join(__dirname, 'files', 'bad.php');
 const goodPath = path.join(__dirname, 'files', 'good.php');
 const emptyPath = path.join(__dirname, 'files', 'empty.php');
 const fatalPath = path.join(__dirname, 'files', 'fatal.php');
 const deprecatedPath = path.join(__dirname, 'files', 'deprecated.php');
 
-const phpLint = require('../lib/main.js');
-
-const lint = phpLint.provideLinter().lint;
+const { lint } = linterPhp.provideLinter();
 
 describe('The php -l provider for Linter', () => {
   beforeEach(async () => {
@@ -28,12 +28,10 @@ describe('The php -l provider for Linter', () => {
   });
 
   it('should be in the packages list', () =>
-    expect(atom.packages.isPackageLoaded('linter-php')).toBe(true),
-  );
+    expect(atom.packages.isPackageLoaded('linter-php')).toBe(true));
 
   it('should be an active package', () =>
-    expect(atom.packages.isPackageActive('linter-php')).toBe(true),
-  );
+    expect(atom.packages.isPackageActive('linter-php')).toBe(true));
 
   describe('checks bad.php and', () => {
     it('verifies that message', async () => {
@@ -76,7 +74,7 @@ describe('The php -l provider for Linter', () => {
   it('handles deprecated errors', async () => {
     const editor = await atom.workspace.open(deprecatedPath);
     const messages = await lint(editor);
-    const phpVersionInfo = await phpLint.getPhpVersionInfo();
+    const phpVersionInfo = await linterPhp.getPhpVersionInfo();
 
     expect(phpVersionInfo.major).not.toBeLessThan(5);
 
