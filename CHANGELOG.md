@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.5.1
+
+*   Guard against invalid `TextEditor`s ([#271][])
+
+[#271]: https://github.com/AtomLinter/linter-php/pull/271
+
 ## v1.5.0
 
 *   Update dependencies ([#266][])
