@@ -29,6 +29,12 @@
     "atom-package-deps": "^4.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-conventional": "^6.1.3",
+    "@commitlint/travis-cli": "^6.1.3",
+    "@semantic-release/apm-config": "^2.0.1",
+    "husky": "^0.14.3",
+    "semantic-release": "^15.1.7",
     "eslint": "^4.6.0",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -44,6 +50,7 @@
     "language-php:grammar-used"
   ],
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "apm test",
     "lint": "eslint ."
   },
@@ -74,5 +81,13 @@
     "globals": {
       "atom": true
     }
+  },
+  "release": {
+    "extends": "@semantic-release/apm-config"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
