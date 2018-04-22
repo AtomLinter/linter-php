@@ -1,30 +1,52 @@
 ### Project specific config ###
 language: php
-matrix:
+os: linux
+env: ATOM_CHANNEL=stable
+script: skip
+
+jobs:
   include:
-    - os: linux
+    - stage: test
       php: '5.6'
-
-    - os: linux
+    - stage: test
       php: '7.0'
-
-    - os: linux
+    - stage: test
       php: '7.1'
-      env:
-        - ATOM_CHANNEL=beta
+    - stage: test
+      php: '7.2'
+      env: ATOM_CHANNEL=beta
+    - stage: test
+      language: node_js
+      node_js: lts/*
+      install:
+        - npm install
+      script:
+        - commitlint-travis
+    - stage: release
+      # Since the deploy needs APM, currently the simplest method is to run
+      # build-package.sh, which requires the specs to pass, so this must run in
+      # the main language instead of Node.js.
+      php: '7.1'
+      script:
+        - export PATH=${PATH}:${HOME}/atom/usr/bin/
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
 
 after_failure:
   - php --syntax-check --define display_errors=On --define log_errors=Off ./spec/files/good.php
   - php --syntax-check --define display_errors=On --define log_errors=Off ./spec/files/bad.php
 
-before_script:
+before_install:
   - php --version
 
 ### Generic setup follows ###
-script:
+install:
   - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
   - chmod u+x build-package.sh
-  - ./build-package.sh
+  - "./build-package.sh"
 
 notifications:
   email:
@@ -34,7 +56,7 @@ notifications:
 branches:
   only:
     - master
-    - /^greenkeeper/.*$/
+    - "/^greenkeeper/.*$/"
 
 git:
   depth: 10
@@ -46,7 +68,12 @@ dist: trusty
 addons:
   apt:
     packages:
-    - build-essential
-    - fakeroot
-    - git
-    - libsecret-1-dev
+      - build-essential
+      - git
+      - libgnome-keyring-dev
+      - fakeroot
+
+stages:
+  - test
+  - name: release
+    if: (NOT type = pull_request) AND branch = master
