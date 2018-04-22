@@ -8,11 +8,11 @@ install:
   - net start wuauserv
   # The following installs and sets up PHP
   - cinst -y php
-  - cd C:\tools\php71
+  - cd C:\tools\php72
   - copy php.ini-production php.ini
   - echo date.timezone="UTC" >> php.ini
   - echo extension_dir=ext >> php.ini
-  - SET PATH=C:\tools\php71\;%PATH%
+  - SET PATH=C:\tools\php72\;%PATH%
 
 environment:
   matrix:
