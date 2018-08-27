@@ -4,8 +4,6 @@ defaults: &defaults
   working_directory: /tmp/project
   docker:
     - image: arcanemagus/atom-docker-ci:stable
-  environment:
-    APM_TEST_PACKAGES: "language-puppet"
   steps:
     # Restore project state
     - attach_workspace:
