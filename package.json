@@ -32,7 +32,7 @@
     "atom-package-deps": "^4.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^6.1.3",
+    "@commitlint/cli": "^7.3.2",
     "@commitlint/config-conventional": "^6.1.3",
     "@commitlint/travis-cli": "^6.1.3",
     "@semantic-release/apm-config": "^2.0.1",
