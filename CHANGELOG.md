@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/AtomLinter/linter-php/compare/v1.5.1...v1.6.0) (2019-01-16)
+
+
+### Features
+
+* update to Linter v2 API ([79054ad](https://github.com/AtomLinter/linter-php/commit/79054ad))
+
 # Changelog
 
 ## v1.5.1
