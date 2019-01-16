@@ -53,9 +53,13 @@
     "language-php:grammar-used"
   ],
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "apm test",
     "lint": "eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "providedServices": {
     "linter": {
