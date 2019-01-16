@@ -39,11 +39,11 @@ describe('The php -l provider for Linter', () => {
       const messages = await lint(editor);
 
       expect(messages.length).toBe(1);
-      expect(messages[0].type).toBe('Error');
-      expect(messages[0].html).not.toBeDefined();
-      expect(messages[0].text).toBe('syntax error, unexpected \'{\'');
-      expect(messages[0].filePath).toBe(badPath);
-      expect(messages[0].range).toEqual([[1, 0], [1, 6]]);
+      expect(messages[0].severity).toBe('error');
+      expect(messages[0].description).not.toBeDefined();
+      expect(messages[0].excerpt).toBe('syntax error, unexpected \'{\'');
+      expect(messages[0].location.file).toBe(badPath);
+      expect(messages[0].location.position).toEqual([[1, 0], [1, 6]]);
     });
   });
 
@@ -65,10 +65,10 @@ describe('The php -l provider for Linter', () => {
     const editor = await atom.workspace.open(fatalPath);
     const messages = await lint(editor);
 
-    expect(messages[0].type).toBe('Error');
-    expect(messages[0].text).toBe('Cannot redeclare Test\\A::foo()');
-    expect(messages[0].filePath).toBe(fatalPath);
-    expect(messages[0].range).toEqual([[10, 4], [10, 25]]);
+    expect(messages[0].severity).toBe('error');
+    expect(messages[0].excerpt).toBe('Cannot redeclare Test\\A::foo()');
+    expect(messages[0].location.file).toBe(fatalPath);
+    expect(messages[0].location.position).toEqual([[10, 4], [10, 25]]);
   });
 
   it('handles deprecated errors', async () => {
@@ -79,10 +79,10 @@ describe('The php -l provider for Linter', () => {
     expect(phpVersionInfo.major).not.toBeLessThan(5);
 
     if (phpVersionInfo.major >= 7) {
-      expect(messages[0].type).toBe('Warning');
-      expect(messages[0].filePath).toBe(deprecatedPath);
-      expect(messages[0].text).toBe('Methods with the same name as their class will not be constructors in a future version of PHP; Foo has a deprecated constructor');
-      expect(messages[0].range).toEqual([[3, 0], [3, 9]]);
+      expect(messages[0].severity).toBe('warning');
+      expect(messages[0].excerpt).toBe('Methods with the same name as their class will not be constructors in a future version of PHP; Foo has a deprecated constructor');
+      expect(messages[0].location.file).toBe(deprecatedPath);
+      expect(messages[0].location.position).toEqual([[3, 0], [3, 9]]);
     } else if (phpVersionInfo.major === 5) {
       // No E_DEPRECATED errors are reported by the linter for 5.x
     }
