@@ -2,7 +2,7 @@
   "name": "linter-php",
   "main": "./lib/main.js",
   "private": true,
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Lint PHP on the fly, using php -l",
   "repository": {
     "type": "git",
